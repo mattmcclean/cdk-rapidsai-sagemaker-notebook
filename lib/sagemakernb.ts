@@ -48,7 +48,7 @@ export class SageMakerNotebook extends cdk.Construct {
     /** Create the SageMaker notebook instance */
     const notebook = new sagemaker.CfnNotebookInstance(this, this.name + 'NotebookInstance', {
       notebookInstanceName: this.name,
-      ...((props.onStartScript || props.onCreateScript) ? { lifecycleConfigName: new sagemaker.CfnNotebookInstanceLifecycleConfig(this, this.name + 'MyLifecycleConfig', {
+      ...((props.onStartScript || props.onCreateScript) ? { lifecycleConfigName: new sagemaker.CfnNotebookInstanceLifecycleConfig(this, this.name + 'LifecycleConfig', {
         notebookInstanceLifecycleConfigName: this.name + 'LifecycleConfig',
         ...(props.onCreateScript ? { onCreate: [ { content: cdk.Fn.base64(props.onCreateScript) }]} : {}),
         ...(props.onStartScript ? { onStart: [ { content: cdk.Fn.base64(props.onStartScript) }]} : {}),
