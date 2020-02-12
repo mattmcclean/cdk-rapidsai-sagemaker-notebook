@@ -4,7 +4,11 @@ set -e
 
 echo "Starting on Create script"
 
-cat > /home/ec2-user/SageMaker/rapidsai-install.sh <<\EOF
+sudo -i -u ec2-user bash <<EOF
+touch /home/ec2-user/SageMaker/.create-notebook
+EOF
+
+cat > /home/ec2-user/SageMaker/.rapidsai-install.sh <<\EOF
 #!/bin/bash
 set -e
 echo "Starting conda create command for rapidsai env"
@@ -13,13 +17,15 @@ source activate /home/ec2-user/SageMaker/env/rapidsai
 echo "Installing Jupyter kernel for rapidsai"
 python -m ipykernel install --name 'rapidsai' --user
 echo "Finished installing rapidsai conda env"
+rm /home/ec2-user/SageMaker/.create-notebook
+echo "Exiting install script"
 EOF
 
-chown ec2-user:ec2-user /home/ec2-user/SageMaker/rapidsai-install.sh
-chmod 755 /home/ec2-user/SageMaker/rapidsai-install.sh 
+chown ec2-user:ec2-user /home/ec2-user/SageMaker/.rapidsai-install.sh
+chmod 755 /home/ec2-user/SageMaker/.rapidsai-install.sh
 
 sudo -i -u ec2-user bash <<EOF
-nohup /home/ec2-user/SageMaker/rapidsai-install.sh &
+nohup /home/ec2-user/SageMaker/.rapidsai-install.sh &
 EOF
 
 echo "Finishing on Create script"
