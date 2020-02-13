@@ -28,7 +28,7 @@ export class SageMakerNotebook extends cdk.Construct {
 
   public readonly instanceType: string;
 
-  public notebookArn: string;
+  public readonly notebookArn: string;
 
   constructor(parent: cdk.Construct, id: string, props: SageMakerNotebookProps) {
     super(parent, id);
