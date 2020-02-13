@@ -15,8 +15,8 @@ echo "Updating conda"
 conda update -n base -c defaults conda -y
 conda update --all -y
 echo "Starting conda create command for rapidsai env"
-conda create -mqyp /home/ec2-user/SageMaker/env/rapidsai -c rapidsai -c nvidia -c conda-forge -c defaults rapids=0.12 python=3.6 ipykernel matplotlib=3.1.3 statsmodels=0.11.0
-source activate /home/ec2-user/SageMaker/env/rapidsai
+conda create -mqyp /home/ec2-user/SageMaker/.env/rapidsai -c rapidsai -c nvidia -c conda-forge -c defaults rapids=0.12 python=3.6 ipykernel matplotlib=3.1.3 statsmodels=0.11.0
+source activate /home/ec2-user/SageMaker/.env/rapidsai
 echo "Installing Jupyter kernel for rapidsai"
 python -m ipykernel install --name 'rapidsai' --user
 echo "Finished installing rapidsai conda env"
