@@ -18,6 +18,8 @@ export interface SageMakerNotebookProps {
   readonly onStartScript?: string;
 
   readonly volumeSize?: number;
+
+  readonly defaultCodeRepository?: string;
 }
 
 export class SageMakerNotebook extends cdk.Construct {
@@ -56,6 +58,7 @@ export class SageMakerNotebook extends cdk.Construct {
       roleArn: this.role.roleArn,
       instanceType: this.instanceType,
       ...(props.volumeSize ? { volumeSizeInGb: props.volumeSize } : {} ),
+      ...(props.defaultCodeRepository ? { defaultCodeRepository: props.defaultCodeRepository } : {}),
     });
 
     this.notebookArn = notebook.ref;

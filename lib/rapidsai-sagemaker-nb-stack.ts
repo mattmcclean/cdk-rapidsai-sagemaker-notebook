@@ -14,6 +14,7 @@ export class RapidsaiSagemakerNbStack extends cdk.Stack {
       onCreateScript: fs.readFileSync('scripts/onCreate.sh', 'utf8').toString(),
       onStartScript: fs.readFileSync('scripts/onStart.sh', 'utf8').toString(),
       volumeSize: 50,
+      defaultCodeRepository: "https://github.com/rapidsai/notebooks",
     });    
   }
 }
